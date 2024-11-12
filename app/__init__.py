@@ -7,7 +7,9 @@ app.secret_key = 'my-secret'
 
 # Register Blueprints
 from app.blueprints.sales import sales
+from app.blueprints.regions import regions
 app.register_blueprint(sales)
+app.register_blueprint(regions)
 
 from . import routes
 
