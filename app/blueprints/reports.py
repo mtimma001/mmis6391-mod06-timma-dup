@@ -33,28 +33,38 @@ def show_reports():
     df_analysis.columns = ['Region', 'Total Monthly Amount']
     analysis_table = df_analysis.to_html(classes='data-table table table-striped table-bordered', index=False,
                                          justify='center')
-
-    # 1. Total Sales by Region
-    total_sales_by_region = df.groupby('region')['monthly_amount'].sum().reset_index()
-    total_sales_by_region.columns = ['Region', 'Total Sales']
-    total_sales_html = total_sales_by_region.to_html(classes='data-table dataframe table table-striped table-bordered',
-                                                     index=False, justify='center')
-
-    # 2. Monthly Sales Trend
-    df['month'] = df['date'].dt.to_period('M')  # Extract the month for trend analysis
-    monthly_sales_trend = df.groupby('month')['monthly_amount'].sum().reset_index()
-    monthly_sales_trend.columns = ['Month', 'Total Monthly Sales']
-    monthly_sales_trend_html = monthly_sales_trend.to_html(classes='data-table dataframe table table-striped table-bordered',
-                                                           index=False, justify='center')
-
-    # 3. Top-Performing Region
-    top_performing_region = total_sales_by_region.sort_values(by='Total Sales', ascending=False).iloc[0]
-    top_region_summary = f"The top-performing region is {top_performing_region['Region']} with total sales of ${top_performing_region['Total Sales']:.2f}."
+    #
+    # # 1. Total Sales by Region
+    # total_sales_by_region = df.groupby('region')['monthly_amount'].sum().reset_index()
+    # total_sales_by_region.columns = ['Region', 'Total Sales']
+    # total_sales_html = total_sales_by_region.to_html(classes='data-table dataframe table table-striped table-bordered',
+    #                                                  index=False, justify='center')
+    #
+    # # 2. Monthly Sales Trend
+    # df['month'] = df['date'].dt.to_period('M')  # Extract the month for trend analysis
+    # monthly_sales_trend = df.groupby('month')['monthly_amount'].sum().reset_index()
+    # monthly_sales_trend.columns = ['Month', 'Total Monthly Sales']
+    # monthly_sales_trend_html = monthly_sales_trend.to_html(classes='data-table dataframe table table-striped table-bordered',
+    #                                                        index=False, justify='center')
+    #
+    # # 3. Top-Performing Region
+    # top_performing_region = total_sales_by_region.sort_values(by='Total Sales', ascending=False).iloc[0]
+    # top_region_summary = f"The top-performing region is {top_performing_region['Region']} with total sales of ${top_performing_region['Total Sales']:.2f}."
 
     # Use the analysis functions from functions.py
     total_sales_by_region = calculate_total_sales_by_region(df)
     monthly_sales_trend = analyze_monthly_sales_trends(df)
     top_performing_region = get_top_performing_region(total_sales_by_region)
+
+    # Convert the DataFrames to HTML tables for display
+    total_sales_html = total_sales_by_region.to_html(classes='data-table dataframe table table-striped table-bordered',
+                                                     index=False, justify='center')
+    monthly_sales_trend_html = monthly_sales_trend.to_html(classes=' data-table dataframe table table-striped table-bordered',
+                                                           index=False, justify='center')
+
+    # Create a summary for the top-performing region
+    top_region_summary = f"The top-performing region is {top_performing_region['Region']} with total sales of ${top_performing_region['Total Sales']:.2f}."
+
 
     return render_template(
     "reports.html",
