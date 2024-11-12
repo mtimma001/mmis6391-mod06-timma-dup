@@ -7,7 +7,7 @@
         <h1>Sales Data Analysis</h1>
 
         {% if analysis_result %}
-            <h2 class="mt-3">Sales Data Summary</h2>
+            <h2 class="mt-5">Sales Data Summary</h2>
             <p>Provides key statistics like count, mean, and range of monthly sales, offering a snapshot of overall performance.</p>
             <div class="table-responsive">
                 {{ analysis_result | safe }}
@@ -15,18 +15,42 @@
         {% endif %}
 
         {% if analysis_chart %}
-            <h2>Analysis Chart</h2>
+            <h2 class="mt-5">Analysis Chart</h2>
             <div class="chart-container">
                 {{ analysis_chart | safe }}
             </div>
         {% endif %}
 
         {% if analysis_table %}
-            <h2 class="mt-3">Regional Sales Totals</h2>
+            <h2 class="mt-5">Regional Sales Totals</h2>
             <p>Shows total monthly sales grouped by region, highlighting top and under-performing areas.</p>
             <div class="table-responsive">
                 {{ analysis_table | safe }}
             </div>
+        {% endif %}
+
+        {% if total_sales_table %}
+            <h2 class="mt-5">Total Sales by Region</h2>
+            <div class="table-responsive">
+                {{ total_sales_table | safe }}
+            </div>
+        {% endif %}
+
+        {% if monthly_sales_table %}
+            <h2 class="mt-5">Monthly Sales Trend</h2>
+            <div class="table-responsive">
+                {{ monthly_sales_table | safe }}
+            </div>
+        {% endif %}
+
+        {% if top_region_summary %}
+            <h2 class="mt-5">Top-Performing Region</h2>
+            <p>{{ top_region_summary }}</p>
+        {% endif %}
+
+        {% if bottom_region_summary %}
+            <h2 class="mt-5">Under-Performing Region</h2>
+            <p>{{ bottom_region_summary }}</p>
         {% endif %}
     </div>
 {% endblock %}
