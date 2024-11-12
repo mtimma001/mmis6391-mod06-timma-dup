@@ -8,8 +8,11 @@ app.secret_key = 'my-secret'
 # Register Blueprints
 from app.blueprints.sales import sales
 from app.blueprints.regions import regions
+from app.blueprints.reports import reports
+
 app.register_blueprint(sales)
 app.register_blueprint(regions)
+app.register_blueprint(reports)
 
 from . import routes
 

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Reports - Sales Analysis{% endblock %}
+
+{% block content %}
+    <div class="container mt-5 text-center">
+        <h1>Sales Data Analysis</h1>
+
+        {% if analysis_result %}
+            <h2 class="mt-3">Sales Data Summary</h2>
+            <p>Provides key statistics like count, mean, and range of monthly sales, offering a snapshot of overall performance.</p>
+            <div class="table-responsive">
+                {{ analysis_result | safe }}
+            </div>
+        {% endif %}
+
+        {% if analysis_chart %}
+            <h2>Analysis Chart</h2>
+            <div class="chart-container">
+                {{ analysis_chart | safe }}
+            </div>
+        {% endif %}
+
+        {% if analysis_table %}
+            <h2 class="mt-3">Regional Sales Totals</h2>
+            <p>Shows total monthly sales grouped by region, highlighting top and under-performing areas.</p>
+            <div class="table-responsive">
+                {{ analysis_table | safe }}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block scripts %}
+
+    <!-- Include DataTables JavaScript -->
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.data-table').DataTable({
+                "paging": true,
+                "ordering": true,
+                "info": true,
+                "searching": false
+            });
+        });
+    </script>
+{% endblock %}

@@ -7,38 +7,42 @@
         <div class="text-center">
             <h1>Welcome to Timma Sales Analysis</h1>
             <p class="lead">Your ultimate tool for analyzing and visualizing sales data</p>
-            <img src="{{ url_for('static', filename='assets/feature2.png') }}" alt="Sales Analysis Overview" class="img-fluid w-75 mt-3">
+            <img alt="Sales Analysis Overview" class="img-fluid w-75 mt-3"
+                 src="{{ url_for('static', filename='assets/feature2.png') }}">
         </div>
 
         <div class="row mt-5">
             <div class="col-md-4 text-center d-flex flex-column align-items-center">
-                <img src="{{ url_for('static', filename='assets/feature1.png') }}" alt="Insightful Reports" class="img-fluid w-75 mb-3">
+                <img alt="Insightful Reports" class="img-fluid w-75 mb-3"
+                     src="{{ url_for('static', filename='assets/feature1.png') }}">
                 <h3>Insightful Reports</h3>
                 <p>Detailed sales reports that provide in-depth analysis of your sales data.</p>
             </div>
             <div class="col-md-4 text-center d-flex flex-column align-items-center">
-                <img src="{{ url_for('static', filename='assets/feature3.png') }}" alt="Dynamic Visualizations" class="img-fluid w-75 mb-3">
+                <img alt="Dynamic Visualizations" class="img-fluid w-75 mb-3"
+                     src="{{ url_for('static', filename='assets/feature3.png') }}">
                 <h3>Dynamic Visualizations</h3>
                 <p>Interactive charts and graphs to visualize your sales trends and patterns.</p>
             </div>
             <div class="col-md-4 text-center d-flex flex-column align-items-center">
-                <img src="{{ url_for('static', filename='assets/feature4.png') }}" alt="Custom Dashboards" class="img-fluid w-75 mb-3">
+                <img alt="Custom Dashboards" class="img-fluid w-75 mb-3"
+                     src="{{ url_for('static', filename='assets/feature4.png') }}">
                 <h3>Custom Dashboards</h3>
                 <p>Customizable dashboards to monitor key performance indicators (KPIs).</p>
             </div>
         </div>
-
-        <div class="row mt-5">
-            <div class="col-md-12 text-center d-flex flex-column align-items-center">
-                <img src="{{ url_for('static', filename='assets/regions.png') }}" alt="Regions Management" class="img-fluid w-75 mb-3">
-                <h3>Regions Management</h3>
-                <p>Manage your sales regions effectively.</p>
-                <a href="{{ url_for('regions.show_regions') }}" class="btn btn-primary">Manage Regions</a>
-            </div>
+        <div class="text-center mt-3 mb-5">
+            <a class="btn btn-primary" href="{{ url_for('about') }}">Learn More</a>
         </div>
 
-        <div class="text-center my-5">
-            <a href="{{ url_for('about') }}" class="btn btn-primary">Learn More</a>
+        <div class="row my-5">
+            <div class="col-md-12 text-center d-flex flex-column align-items-center">
+                <img alt="Regions Management" class="img-fluid w-75 mb-3"
+                     src="{{ url_for('static', filename='assets/regions.png') }}">
+                <h3>Regions Management</h3>
+                <p>Manage your sales regions effectively.</p>
+                <a class="btn btn-primary" href="{{ url_for('regions.show_regions') }}">Manage Regions</a>
+            </div>
         </div>
     </div>
 {% endblock %}
