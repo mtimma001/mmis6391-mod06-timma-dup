@@ -9,10 +9,12 @@ app.secret_key = 'my-secret'
 from app.blueprints.sales import sales
 from app.blueprints.regions import regions
 from app.blueprints.reports import reports
+from app.blueprints.visualization import visualization
 
 app.register_blueprint(sales)
 app.register_blueprint(regions)
 app.register_blueprint(reports)
+app.register_blueprint(visualization)
 
 from . import routes
 

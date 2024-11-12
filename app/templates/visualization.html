@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Sales Visualization{% endblock %}
+
+{% block content %}
+<div class="container mt-5 text-center">
+    <h1 class="mb-4">Sales Visualization</h1>
+    <p>The visualization page presents interactive charts to highlight sales trends and regional performance. These visual tools help users quickly identify top-performing regions and analyze data patterns for informed decision-making.</p>
+    <div>
+        {{ chart_html | safe }}
+    </div>
+</div>
+{% endblock %}
