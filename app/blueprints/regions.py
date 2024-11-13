@@ -65,9 +65,22 @@ def edit_region(region_id):
 @regions.route('/delete_region/<int:region_id>', methods=['POST'])
 def delete_region(region_id):
     connection = get_db()
+
+    # Check if the region is referenced in sales_data
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT COUNT(*) AS Count FROM sales_data WHERE region_id = %s", (region_id,))
+        count_result = cursor.fetchone()
+        count = count_result['Count'] if count_result else 0
+
+    if count > 0:
+        flash("Cannot delete this region as it is referenced in sales data records.", "danger")
+        return redirect(url_for('regions.show_regions'))
+
+    # Proceed with deletion if no dependencies exist
     query = "DELETE FROM regions WHERE region_id = %s"
     with connection.cursor() as cursor:
         cursor.execute(query, (region_id,))
     connection.commit()
     flash("Region deleted successfully!", "success")
     return redirect(url_for('regions.show_regions'))
+

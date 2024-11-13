@@ -6,8 +6,13 @@
 <div class="container mt-5 text-center">
     <h1 class="mb-4">Sales Visualization</h1>
     <p>The visualization page presents interactive charts to highlight sales trends and regional performance. These visual tools help users quickly identify top-performing regions and analyze data patterns for informed decision-making.</p>
-    <div>
-        {{ chart_html | safe }}
+    <div class="mt-5">
+        <h2>Total Sales by Region</h2>
+        {{ total_sales_plot | safe }}
+    </div>
+    <div class="mt-5">
+        <h2>Monthly Sales Trend</h2>
+        {{ monthly_sales_plot | safe }}
     </div>
 </div>
 {% endblock %}
